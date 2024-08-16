@@ -91,7 +91,14 @@ app.get('/top-fossils', (req, res) => {
   } else {
     res.redirect('/')
   }
-  
+})
+
+app.post('/like-fossil', (req, res) => {
+  const likedFoss = req.body.likedFoss
+  MOST_LIKED_FOSSILS[likedFoss].num_likes ++
+  res.render('thank-you.html', {
+    username: req.session.name
+  })
 })
 
 ViteExpress.listen(app, port, () => {

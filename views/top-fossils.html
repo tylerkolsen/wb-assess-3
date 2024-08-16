@@ -11,5 +11,16 @@
       <img src="{{ fossVal.img }}" />
       {% endfor %}
     </div>
+    <div>
+      <form action="/like-fossil" method="post">
+        <select name="likedFoss" id="">
+          <option value="">-- Please select one --</option>
+          {% for fossKey, fossVal in MOST_LIKED_FOSSILS %}
+          <option value="{{ fossKey }}">{{ fossVal.name }}</option>
+          {% endfor %}
+        </select>
+        <input type="submit">
+      </form>
+    </div>
     {% endblock body %}
 
