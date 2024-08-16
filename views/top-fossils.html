@@ -4,23 +4,26 @@
 
     {% block body %}
     <h1>Welcome, {{ username }}</h1>
-    <div class="fossil-div">
-      {% for fossKey, fossVal in MOST_LIKED_FOSSILS %}
-      <h3>{{ username }}, this is {{ fossVal.name }}</h3>
-      <h2> Liked {{ fossVal.num_likes }} times.</h2>
-      <img src="{{ fossVal.img }}" />
-      {% endfor %}
-    </div>
+    {% for fossKey, fossVal in MOST_LIKED_FOSSILS %}
+      <div class="fossil-div">
+        <h3>{{ username }}, this is {{ fossVal.name }}</h3>
+        <h2> Liked {{ fossVal.num_likes }} times.</h2>
+        <img src="{{ fossVal.img }}" />
+      </div>
+    {% endfor %}
     <div>
       <form action="/like-fossil" method="post">
-        <select name="likedFoss" id="">
-          <option value="">-- Please select one --</option>
+        <label for="likedFoss">Please like your favorite fossil!</label>
+        <select name="likedFoss" id="likedFoss">
           {% for fossKey, fossVal in MOST_LIKED_FOSSILS %}
           <option value="{{ fossKey }}">{{ fossVal.name }}</option>
           {% endfor %}
         </select>
-        <input type="submit">
+        <input type="submit" value="Like!">
       </form>
+      {% if check %}
+      <p>Please select a fossil</p>
+      {% endif %}
     </div>
     {% endblock body %}
 
